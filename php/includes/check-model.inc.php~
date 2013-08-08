@@ -1,0 +1,30 @@
+<?
+  require ('./includes/config.inc.php');
+  require (MYSQL);
+  require ('./includes/hf_functions.inc.php');
+  require ('./includes/form_functions.inc.php');
+  
+  $page_title = 'Finalizando Compra';  
+
+  $valid = false;
+  $shipping_errors = array();  
+  
+  if($_SERVER['REQUEST_METHOD'] == 'POST') 
+  {
+    require ('check-validation.inc.php');
+    if (empty($shipping_errors)) 
+    {
+    	$valid = true;   
+    }
+  }
+ 
+  $display_left_panel = true;
+    $left_panel_href = 'ctg';
+    $left_panel_data_icon = 'flat-menu';
+    $left_panel_name = 'Categorias';
+
+  $display_right_panel = true;
+    $right_panel_href = 'cart';
+    $right_panel_data_icon = 'cart';
+    $right_panel_name = 'Carrinho';
+  

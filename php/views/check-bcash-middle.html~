@@ -1,0 +1,82 @@
+    <div data-role="content" role="main">
+<form name="bcash" action="https://www.bcash.com.br/checkout/pay/" method="post">
+      Dados corretos, gentileza clicar no botão para concluir o pagamento:
+      
+        <input type="image" src="https://www.bcash.com.br/webroot/img/bt_comprar.gif" value="Pagar" alt="Pagar" border="0" align="absbottom" >
+
+<input name="email_loja" type="hidden" value="manaphys@gmail.com">
+<input name="url_retorno" type="hidden" value="http://150.164.100.10:54321/administrador/clv/php/bcash_retorno.php">
+<input name="url_aviso" type="hidden" value="https://www.enderecodasualoja.com.br/aviso.php">
+<input name="frete" type="hidden" value="'.$frete.'">
+<input name="id_pedido" type="hidden" value="'.rand().'">
+<input name="tipo_frete" type="hidden" value="sedex">
+<input name="desconto" type="hidden" value="3.00">
+<input name="acrescimo" type="hidden" value="1.00">
+<input name="parcela_maxima" type="hidden" value="10">
+<input name="meio_pagamento" type="hidden" value="1">
+
+<?    
+if (!empty($car)) 
+{
+  $contador = 1;
+  foreach($car as $row) 
+  {
+    echo ' 
+<input name="produto_codigo_'.$contador.'" type="hidden" value="'.$row['id_prd'].'"> 
+<input name="produto_descricao_'.$contador.'" type="hidden" value="'.$row['nme'].'">
+<input name="produto_qtde_'.$contador.'" type="hidden" value="'.$row['qtd'].'"> 
+<input name="produto_valor_'.$contador.'" type="hidden" value="'.$row['prc'].'" > 
+<input name="produto_extra_'.$contador.'" type="hidden" value="extra" >
+    ';
+    $contador++;
+  }
+}    
+?>              
+ 
+<input name="redirect" type="hidden" value="true">
+
+
+<input name="email" type="hidden" value="<? echo $_POST['cpf'];?>" >
+<input name="cpf" type="hidden" value="06643071674">
+<input name="nome" type="hidden" value="João da Silva">
+<input name="telefone" type="hidden" value="3188410209">
+<input name="cep" type="hidden" value="31050540">
+<input name="endereco" type="hidden" value="Av Paulista, 1070">
+<input name="complemento" type="hidden" value="Sala 10">
+<input name="bairro" type="hidden" value="Centro">
+<input name="cidade" type="hidden" value="São Paulo">
+<input name="estado" type="hidden" value="SP">
+
+
+	<p><label for="cpf"><strong>CPF</strong></label> <?php create_form_input('cpf', 'text', $shipping_errors); ?><small>Exemplo: 012 345 678 90</small></p>
+	          
+	<p><label for="nome"><strong>Nome</strong></label> <?php create_form_input('nome', 'text', $shipping_errors); ?></p>
+	
+	<p><label for="telefone"><strong>Telefone</strong></label> <?php create_form_input('telefone', 'text', $shipping_errors); ?><small>Exemplo: 01 2345 6789</small></p>
+	
+	<p><label for="cep"><strong>CEP</strong></label> <?php create_form_input('cep', 'text', $shipping_errors); ?><small>Exemplo: 01 234 567</small></p>
+
+	<p><label for="endereco"><strong>Endereço</strong></label> <?php create_form_input('endereco', 'text', $shipping_errors); ?></p>
+	
+	<p><label for="complemento"><strong>Complemento</strong></label> <?php create_form_input('complemento', 'text', $shipping_errors); ?></p>
+	
+	<p><label for="bairro"><strong>Bairro</strong></label> <?php create_form_input('bairro', 'text', $shipping_errors); ?></p>
+	
+	<p><label for="cidade"><strong>Cidade</strong></label> <?php create_form_input('cidade', 'text', $shipping_errors); ?></p>
+	
+	<p><label for="estado"><strong>Estado</strong> </label> <?php create_form_input('estado', 'select', $shipping_errors); ?></p>
+	
+<input name="rg" type="hidden" value="">
+<input name="data_emissao_rg" type="hidden" value="">
+<input name="orgao_emissor_rg" type="hidden" value="">
+<input name="estado_emissor_rg" type="hidden" value="">
+<input name="sexo" type="hidden" value="">
+<input name="data_nascimento" type="hidden" value="">
+<input name="celular" type="hidden" value=""> 
+<input name="cliente_razao_social" type="hidden" value="">
+<input name="cliente_cnpj" type="hidden" value="">
+
+                 
+      </form>
+
+    </div>

@@ -1,0 +1,23 @@
+    <div data-role="content" role="main">
+<?
+  if (isset($_SESSION['user_admin'])) 
+  {
+    if (!isset($_SESSION['user_not_expired'])) 
+      echo '<p class="error">A sua conta expirou. Gentileza entrar em contato com o administrador.</p>';
+      else
+      {
+        echo '<ul data-theme="c" data-role="listview" data-icon="false" data-inset="true">';
+        echo '<li><a data-role="button" href="./usr/" data-theme="b">usr</a></li>';
+        echo '<li><a data-role="button" href="./prd/" data-theme="b">prd</a></li>';
+        echo '<li><a data-role="button" href="./ord/" data-theme="b">ord</a><li>';
+        echo '</ul>';
+      }
+  }
+  elseif (!isset($_SESSION['user_admin'])) 
+  {
+    echo '<p class="error">Para acessar essa área você deve estar autenticado como usuário administrador.</p>';
+  }
+?>
+      
+    </div>
+    
