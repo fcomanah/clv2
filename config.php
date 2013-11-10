@@ -1,58 +1,13 @@
 <?php
     $live = false;    
     $contact_email = 'fco.manah@gmail.com';
+    $user = "mfer";
     //echo __DIR__ . '</br>';
     define ('BASE_URI', __DIR__ );
     //echo $_SERVER['HTTP_USER_AGENT'] . " " . $_SERVER['REMOTE_ADDR'] . '</br>';    
     //echo $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . '</br>';
-    define ('BASE_URL', $_SERVER['SERVER_NAME']);
+    define ('BASE_URL', "http://" . $_SERVER['SERVER_NAME'] . '/' . $user . '/');
     
     session_start();
-
-    // Function for handling errors.
-    // Takes five arguments: error number, error message (string), name of the file where the error occurred (string) 
-    // line number where the error occurred, and the variables that existed at the time (array).
-    // Returns true.
-    function my_error_handler ($e_number, $e_message, $e_file, $e_line, $e_vars) 
-    {
-    // Need these two vars:
-    global $live, $contact_email;
-	
-    // Build the error message:
-    $message = "An error occurred in script '$e_file' on line $e_line:\n$e_message\n";
-	
-    // Add the backtrace:
-    $message .= "<pre>" .print_r(debug_backtrace(), 1) . "</pre>\n";
-	
-    // Or just append $e_vars to the message:
-    //	$message .= "<pre>" . print_r ($e_vars, 1) . "</pre>\n";
-
-    if (!$live)
-    { // Show the error in the browser.
-    echo '<div class="error">' . nl2br($message) . '</div>';
-    }
-    else
-    { // Development (print the error).
-    // Send the error in an email:
-    //error_log ($message, 1, $contact_email, 'From:admin@example.com');
-    
-    		// Only print an error message in the browser, if the error isn't a notice:
-    if ($e_number != E_NOTICE)
-    {
-    echo '<div class="error">A system error occurred. We apologize for the inconvenience.</div>';
-		    }
-    }
-	
-    return true; // So that PHP doesn't try to handle the error, too.
-    }
-    set_error_handler ('my_error_handler');
-    
-    function redirect_invalid_user($check='id'){
-	    if (!isset($_SESSION[$check])) {
-		    $url = './';
-		    header("Location: $url");
-		    exit(); 
-	    }	
-    }
 
 // Omit the closing PHP tag to avoid 'headers already sent' errors!
